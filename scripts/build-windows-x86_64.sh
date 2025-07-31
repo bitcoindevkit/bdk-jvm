@@ -5,6 +5,9 @@ TARGET_DIR="target/x86_64-pc-windows-msvc/release-smaller"
 RESOURCE_DIR="resources/win32-x86-64"
 LIB_NAME="bdkffi.dll"
 
+echo "Making sure the submodule is initialized..."
+git submodule update --init
+
 # Move to the Rust library directory
 cd ./bdk-ffi/bdk-ffi/ || exit
 

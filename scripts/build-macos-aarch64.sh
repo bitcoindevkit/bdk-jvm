@@ -5,6 +5,9 @@ TARGET_DIR="target/$COMPILATION_TARGET/release-smaller"
 RESOURCE_DIR="resources/darwin-aarch64"
 LIB_NAME="libbdkffi.dylib"
 
+echo "Making sure the submodule is initialized..."
+git submodule update --init
+
 # Move to the Rust library directory
 cd ./bdk-ffi/bdk-ffi/ || exit
 
