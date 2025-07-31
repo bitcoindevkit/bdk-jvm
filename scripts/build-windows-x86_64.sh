@@ -5,6 +5,10 @@ TARGET_DIR="target/x86_64-pc-windows-msvc/release-smaller"
 RESOURCE_DIR="resources/win32-x86-64"
 LIB_NAME="bdkffi.dll"
 
+printf "\nSubmodule check...\n"
+git submodule update --init
+printf "Submodule is checked out at commit: $(git submodule status)\n\n"
+
 # Move to the Rust library directory
 cd ./bdk-ffi/bdk-ffi/ || exit
 

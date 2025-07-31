@@ -5,6 +5,10 @@ TARGET_DIR="target/x86_64-apple-darwin/release-smaller"
 RESOURCE_DIR="resources/darwin-x86-64"
 LIB_NAME="libbdkffi.dylib"
 
+printf "\nSubmodule check...\n"
+git submodule update --init
+printf "Submodule is checked out at commit: $(git submodule status)\n\n"
+
 # Move to the Rust library directory
 cd ./bdk-ffi/bdk-ffi/ || exit
 
