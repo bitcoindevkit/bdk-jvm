@@ -2,3 +2,4 @@ build/
 .gradle/
 bdk.kt
 libbdkffi.dylib
+/.idea
