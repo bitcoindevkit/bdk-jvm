@@ -3,3 +3,4 @@ build/
 bdk.kt
 libbdkffi.dylib
 /.idea
+.DS_Store
