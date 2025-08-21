@@ -2,6 +2,7 @@ import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
     kotlin("jvm") version "2.1.10"
+    application
 }
 
 group = "org.bitcoindevkit"
@@ -31,4 +32,18 @@ tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
     compilerOptions {
         jvmTarget.set(JvmTarget.JVM_11)
     }
+}
+
+tasks.register<JavaExec>("WalletSetupBip32") {
+    group = "application"
+    description = "Runs the main function in the WalletSetupBip32 example"
+    mainClass.set("org.bitcoindevkit.WalletSetupBip32Kt")
+    classpath = sourceSets["main"].runtimeClasspath
+}
+
+tasks.register<JavaExec>("MultisigTransaction") {
+    group = "application"
+    description = "Runs the main function in the MultisigTransaction example"
+    mainClass.set("org.bitcoindevkit.MultisigTransactionKt")
+    classpath = sourceSets["main"].runtimeClasspath
 }
