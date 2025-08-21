@@ -1,8 +1,8 @@
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
-    kotlin("jvm") version "2.1.10"
-    application
+    id("org.jetbrains.kotlin.jvm") version "2.1.10"
+    id("application")
 }
 
 group = "org.bitcoindevkit"
