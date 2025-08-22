@@ -153,7 +153,7 @@ fun getNewWallet(script: ActiveWalletScriptType, network: Network): Wallet {
 
 fun generateUniquePersistenceFilePath(): String {
     // Resolve the absolute path to the fixed `examples/data` directory
-    val projectRoot = Paths.get("").toAbsolutePath().parent.resolve("examples")
+    val projectRoot = Paths.get(".").toAbsolutePath().parent.resolve("examples")
     val persistenceDirectory = projectRoot.resolve("data").toFile()
 
     persistenceDirectory.apply {

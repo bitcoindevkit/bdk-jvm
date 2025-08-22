@@ -66,7 +66,7 @@ fun createScriptAppropriateDescriptor(
 }
 fun getPersistenceFilePath(): String {
     // Resolve absolute path to the fixed `examples/data` directory
-    val projectRoot = Paths.get("").toAbsolutePath().parent.resolve("examples")
+    val projectRoot = Paths.get(".").toAbsolutePath().parent.resolve("examples")
     val persistenceDirectory = projectRoot.resolve("data").toFile()
     val persistenceFilePath = projectRoot.resolve("data/bdk_persistence.sqlite").toString()
 
