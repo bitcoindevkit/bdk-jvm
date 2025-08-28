@@ -1,4 +1,4 @@
-name: Trigger test for BDK-FFI Latest Merge
+name: Trigger Tests for BDK-FFI Latest Commit
 on:
   workflow_dispatch:
   repository_dispatch:
@@ -22,7 +22,8 @@ jobs:
           cd ./bdk-ffi/ \
           && git fetch origin \
           && git checkout master \
-          && git pull origin master
+          && git pull origin master \
+          && echo "Testing commit: $(git log -1 --pretty=format:'%h %s (author: %cn)')"
 
       - name: "Cache"
         uses: actions/cache@v3
