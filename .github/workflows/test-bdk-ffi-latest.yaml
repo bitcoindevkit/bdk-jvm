@@ -1,0 +1,45 @@
+name: Trigger test for BDK-FFI Latest Merge
+on:
+  repository_dispatch:
+    types: [ trigger-bdk-jvm-test ]
+
+permissions: {}
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: "Check out PR branch"
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+          persist-credentials: false
+          fetch-depth: 0
+
+      - name: "Update bdk-ffi submodule to latest"
+        run: |
+          cd ./bdk-ffi/ \
+          && git fetch origin \
+          && git checkout master \
+          && git pull origin master
+
+      - name: "Cache"
+        uses: actions/cache@v3
+        with:
+          path: |
+            ~/.cargo/registry
+            ~/.cargo/git
+            ./target
+          key: ${{ runner.os }}-${{ hashFiles('**/Cargo.toml','**/Cargo.lock') }}
+
+      - name: "Set up JDK"
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
+
+      - name: "Run JVM tests"
+        run: |
+          bash ./scripts/build-linux-x86_64.sh
+          ./gradlew test -P excludeConnectedTests
+          ./gradlew :examples:build
