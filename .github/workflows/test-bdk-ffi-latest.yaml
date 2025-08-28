@@ -1,5 +1,6 @@
 name: Trigger test for BDK-FFI Latest Merge
 on:
+  workflow_dispatch:
   repository_dispatch:
     types: [ trigger-bdk-jvm-test ]
 
