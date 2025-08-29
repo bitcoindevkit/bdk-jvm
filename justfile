@@ -61,8 +61,3 @@ clean:
 [doc("Run all tests, unless a specific test is provided.")]
 test *TEST:
   ./gradlew test {{ if TEST == "" { "" } else { "--tests " + TEST } }}
-
-[group("Test")]
-[doc("Run only offline tests.")]
-test-offline:
-  ./gradlew test -P excludeConnectedTests
