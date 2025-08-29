@@ -3,9 +3,9 @@ package org.bitcoindevkit
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
-class OfflineDescriptorTest {
+class MnemonicTest {
     @Test
-    fun testDescriptorBip86() {
+    fun `Mnemonics create valid descriptors`() {
         val mnemonic: Mnemonic = Mnemonic.fromString("space echo position wrist orient erupt relief museum myself grain wisdom tumble")
         val descriptorSecretKey: DescriptorSecretKey = DescriptorSecretKey(Network.TESTNET, mnemonic, null)
         val descriptor: Descriptor = Descriptor.newBip86(descriptorSecretKey, KeychainKind.EXTERNAL, Network.TESTNET)
