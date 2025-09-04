@@ -43,5 +43,5 @@ jobs:
       - name: "Run JVM tests"
         run: |
           bash ./scripts/build-linux-x86_64.sh --skip-submodule-update
-          ./gradlew test -P excludeConnectedTests
+          ./gradlew test
           ./gradlew :examples:build
