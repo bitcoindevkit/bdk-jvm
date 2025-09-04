@@ -35,6 +35,11 @@ class DescriptorTest {
         }
     }
 
+    @Test
+    fun `Descriptor can be created from multipath public descriptor string`() {
+        Descriptor("tr($TEST_EXTENDED_PUBKEY/$BIP86_TEST_MULTIPATH/*)", Network.REGTEST)
+    }
+
     @Nested
     inner class Failure {
         @Test
@@ -44,6 +49,13 @@ class DescriptorTest {
                     "addr(tb1qhjys9wxlfykmte7ftryptx975uqgd6kcm6a7z4)",
                     Network.TESTNET4
                 )
+            }
+        }
+
+        @Test
+        fun `Descriptor cannot be created from multipath private descriptor string`() {
+            assertFails {
+                Descriptor("tr($TEST_EXTENDED_PRIVKEY/$BIP86_TEST_MULTIPATH/*)", Network.REGTEST)
             }
         }
     }
