@@ -54,5 +54,26 @@ class CreatingWalletTest {
                 )
             }
         }
+
+        @Test
+        fun `You cannot create a wallet with two identical descriptors`() {
+            assertFails {
+                Wallet(
+                    descriptor = TEST_DEFINITE_DESCRIPTOR_0,
+                    changeDescriptor = TEST_DEFINITE_DESCRIPTOR_0,
+                    network = Network.TESTNET4,
+                    persister = conn
+                )
+            }
+
+            assertFails {
+                Wallet(
+                    descriptor = TEST_BIP84_DESCRIPTOR,
+                    changeDescriptor = TEST_BIP84_DESCRIPTOR,
+                    network = Network.TESTNET4,
+                    persister = conn
+                )
+            }
+        }
     }
 }
