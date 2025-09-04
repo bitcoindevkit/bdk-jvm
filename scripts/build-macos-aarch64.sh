@@ -6,8 +6,13 @@ RESOURCE_DIR="resources/darwin-aarch64"
 LIB_NAME="libbdkffi.dylib"
 
 printf "\nSubmodule check...\n"
-git submodule update --init
-printf "Submodule is checked out at commit: $(git submodule status)\n\n"
+if [[ "$1" != "--skip-submodule-update" ]]; then
+  git submodule update --init
+  printf "Submodule is checked out at commit: $(git submodule status)\n\n"
+else
+  printf "Skipping submodule update, using local changes.\n"
+  printf "Submodule is checked out at commit: $(git submodule status)\n\n"
+fi
 
 # Move to the Rust library directory
 cd ./bdk-ffi/bdk-ffi/ || exit
