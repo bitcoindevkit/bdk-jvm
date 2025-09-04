@@ -13,7 +13,7 @@ class DescriptorTest {
             Descriptor("wpkh($TEST_EXTENDED_PRIVKEY/$BIP84_TEST_RECEIVE_PATH/*)", Network.TESTNET)
             Descriptor("wpkh($TEST_EXTENDED_PRIVKEY/$BIP84_TEST_RECEIVE_PATH/*)", Network.TESTNET4)
             Descriptor("wpkh($TEST_EXTENDED_PRIVKEY/$BIP84_TEST_RECEIVE_PATH/*)", Network.SIGNET)
-            Descriptor("wpkh($MAINNET_EXTENDED_PRIVKEY/$BIP84_MAINNET_RECEIVE_PATH/*)", Network.BITCOIN)
+            Descriptor("wpkh($MAIN_EXTENDED_PRIVKEY/$BIP84_MAIN_RECEIVE_PATH/*)", Network.BITCOIN)
         }
 
         @Test
@@ -22,7 +22,7 @@ class DescriptorTest {
             Descriptor("tr($TEST_EXTENDED_PRIVKEY/$BIP86_TEST_RECEIVE_PATH/*)", Network.TESTNET)
             Descriptor("tr($TEST_EXTENDED_PRIVKEY/$BIP86_TEST_RECEIVE_PATH/*)", Network.TESTNET4)
             Descriptor("tr($TEST_EXTENDED_PRIVKEY/$BIP86_TEST_RECEIVE_PATH/*)", Network.SIGNET)
-            Descriptor("tr($MAINNET_EXTENDED_PRIVKEY/$BIP86_MAINNET_RECEIVE_PATH/*)", Network.BITCOIN)
+            Descriptor("tr($MAIN_EXTENDED_PRIVKEY/$BIP86_MAIN_RECEIVE_PATH/*)", Network.BITCOIN)
         }
 
         @Test
@@ -31,7 +31,7 @@ class DescriptorTest {
             Descriptor("tr($TEST_EXTENDED_PRIVKEY/$BIP86_TEST_RECEIVE_PATH/0)", Network.TESTNET)
             Descriptor("tr($TEST_EXTENDED_PRIVKEY/$BIP86_TEST_RECEIVE_PATH/0)", Network.TESTNET4)
             Descriptor("tr($TEST_EXTENDED_PRIVKEY/$BIP86_TEST_RECEIVE_PATH/0)", Network.SIGNET)
-            Descriptor("tr($MAINNET_EXTENDED_PRIVKEY/$BIP86_MAINNET_RECEIVE_PATH/0)", Network.BITCOIN)
+            Descriptor("tr($MAIN_EXTENDED_PRIVKEY/$BIP86_MAIN_RECEIVE_PATH/0)", Network.BITCOIN)
         }
     }
 
@@ -40,9 +40,9 @@ class DescriptorTest {
         @Test
         fun `Cannot create addr() descriptor`() {
             assertFails {
-                val descriptor: Descriptor = Descriptor(
+                Descriptor(
                     "addr(tb1qhjys9wxlfykmte7ftryptx975uqgd6kcm6a7z4)",
-                    Network.TESTNET
+                    Network.TESTNET4
                 )
             }
         }

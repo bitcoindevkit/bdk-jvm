@@ -11,9 +11,9 @@ class WalletTest {
     @Test
     fun `Wallet produces valid addresses for its network`() {
         val wallet: Wallet = Wallet(
-            descriptor = BIP84_DESCRIPTOR,
-            changeDescriptor = BIP84_CHANGE_DESCRIPTOR,
-            network = Network.TESTNET,
+            descriptor = TEST_BIP84_DESCRIPTOR,
+            changeDescriptor = TEST_BIP84_CHANGE_DESCRIPTOR,
+            network = Network.TESTNET4,
             persister = conn
         )
         val addressInfo: AddressInfo = wallet.revealNextAddress(KeychainKind.EXTERNAL)
@@ -29,9 +29,9 @@ class WalletTest {
     @Test
     fun `Wallet has 0 balance prior to sync`() {
         val wallet: Wallet = Wallet(
-            descriptor = BIP84_DESCRIPTOR,
-            changeDescriptor = BIP84_CHANGE_DESCRIPTOR,
-            network = Network.TESTNET,
+            descriptor = TEST_BIP84_DESCRIPTOR,
+            changeDescriptor = TEST_BIP84_CHANGE_DESCRIPTOR,
+            network = Network.TESTNET4,
             persister = conn
         )
 
