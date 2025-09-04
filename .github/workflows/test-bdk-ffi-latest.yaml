@@ -23,7 +23,7 @@ jobs:
           && git fetch origin \
           && git checkout master \
           && git pull origin master \
-          && echo "Testing commit: $(git log -1 --pretty=format:'%h %s (author: %cn)')"
+          && echo "Testing commit: $(git log -1 --pretty=format:'%h %s (author: %an)')"
 
       - name: "Cache"
         uses: actions/cache@v3
