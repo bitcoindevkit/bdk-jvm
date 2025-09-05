@@ -23,7 +23,7 @@ jobs:
           && git fetch origin \
           && git checkout master \
           && git pull origin master \
-          && echo "Testing commit: $(git log -1 --pretty=format:'%h %s (author: %cn)')"
+          && echo "Testing commit: $(git log -1 --pretty=format:'%h %s (author: %an)')"
 
       - name: "Cache"
         uses: actions/cache@v3
@@ -43,5 +43,5 @@ jobs:
       - name: "Run JVM tests"
         run: |
           bash ./scripts/build-linux-x86_64.sh --skip-submodule-update
-          ./gradlew test -P excludeConnectedTests
+          ./gradlew test
           ./gradlew :examples:build
