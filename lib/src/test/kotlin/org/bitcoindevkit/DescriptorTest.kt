@@ -36,8 +36,8 @@ class DescriptorTest {
     }
 
     @Test
-    fun `Descriptor can be created from multipath public descriptor string`() {
-        Descriptor("tr($TEST_EXTENDED_PUBKEY/$BIP86_TEST_MULTIPATH/*)", Network.REGTEST)
+    fun `Descriptors can be created from multipath public descriptor string`() {
+        Descriptor("tr($TEST_EXTENDED_PUBKEY/<0;1>/*)", Network.REGTEST)
     }
 
     @Nested
