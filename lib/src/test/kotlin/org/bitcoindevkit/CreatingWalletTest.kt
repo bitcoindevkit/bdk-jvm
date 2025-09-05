@@ -38,6 +38,15 @@ class CreatingWalletTest {
                 persister = conn
             )
         }
+
+        @Test
+        fun `Create a wallet with a public multipath descriptor`() {
+            Wallet.createFromTwoPathDescriptor(
+                twoPathDescriptor = TEST_MULTIPATH_DESCRIPTOR,
+                network = Network.TESTNET4,
+                persister = conn
+            )
+        }
     }
 
     @Nested

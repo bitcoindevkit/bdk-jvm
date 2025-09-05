@@ -8,7 +8,7 @@ class DescriptorTest {
     @Nested
     inner class Success {
         @Test
-        fun `Create extended WPKH descriptors for all networks 2`() {
+        fun `Create extended WPKH descriptors for all networks`() {
             Descriptor("wpkh($TEST_EXTENDED_PRIVKEY/$BIP84_TEST_RECEIVE_PATH/*)", Network.REGTEST)
             Descriptor("wpkh($TEST_EXTENDED_PRIVKEY/$BIP84_TEST_RECEIVE_PATH/*)", Network.TESTNET)
             Descriptor("wpkh($TEST_EXTENDED_PRIVKEY/$BIP84_TEST_RECEIVE_PATH/*)", Network.TESTNET4)
@@ -33,12 +33,17 @@ class DescriptorTest {
             Descriptor("tr($TEST_EXTENDED_PRIVKEY/$BIP86_TEST_RECEIVE_PATH/0)", Network.SIGNET)
             Descriptor("tr($MAIN_EXTENDED_PRIVKEY/$BIP86_MAIN_RECEIVE_PATH/0)", Network.BITCOIN)
         }
+
+        @Test
+        fun `Create descriptors from multipath public descriptor strings`() {
+            Descriptor("tr($TEST_EXTENDED_PUBKEY/<0;1>/*)", Network.REGTEST)
+            Descriptor("tr($TEST_EXTENDED_PUBKEY/<0;1>/*)", Network.TESTNET)
+            Descriptor("tr($TEST_EXTENDED_PUBKEY/<0;1>/*)", Network.TESTNET4)
+            Descriptor("tr($TEST_EXTENDED_PUBKEY/<0;1>/*)", Network.SIGNET)
+            Descriptor("tr($MAIN_EXTENDED_PUBKEY/<0;1>/*)", Network.BITCOIN)
+        }
     }
 
-    @Test
-    fun `Descriptor can be created from multipath public descriptor string`() {
-        Descriptor("tr($TEST_EXTENDED_PUBKEY/$BIP86_TEST_MULTIPATH/*)", Network.REGTEST)
-    }
 
     @Nested
     inner class Failure {
