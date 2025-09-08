@@ -30,6 +30,15 @@ class CreatingWalletTest {
         }
 
         @Test
+        fun `Create a wallet with a single descriptor`() {
+            Wallet.createSingle(
+                descriptor = TEST_BIP84_DESCRIPTOR,
+                network = Network.TESTNET4,
+                persister = conn
+            )
+        }
+
+        @Test
         fun `Create a wallet with a non-extended descriptor`() {
             Wallet(
                 descriptor = TEST_DEFINITE_DESCRIPTOR_0,
