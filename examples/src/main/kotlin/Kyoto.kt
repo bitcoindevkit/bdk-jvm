@@ -45,7 +45,6 @@ fun main() {
         val client = lightClient.client
         val node = lightClient.node
 
-        val logJob = launchLogCollector(this, client::nextLog, "LOG")
         val logWarningJob = launchLogCollector(this, client::nextWarning, "WARNING")
         val logInfoJob = launchLogCollector(this, client::nextInfo, "INFO")
 
@@ -64,7 +63,6 @@ fun main() {
         }else{
             println("Wallet balance is 0. Try sending funds to ${address.address} and try again.")
         }
-        logJob.cancelAndJoin()
         logWarningJob.cancelAndJoin()
         logInfoJob.cancelAndJoin()
         client.shutdown()
@@ -77,7 +75,6 @@ fun <T> launchLogCollector(scope: CoroutineScope, collector: suspend () -> T, lo
     while (true) {
         val log = collector()
         when (logType) {
-            "LOG" -> logger.info("$log")
             "WARNING" -> logger.warn("$log")
             "INFO" -> logger.info("$log")
             else -> logger.debug("[$logType]: $log")
