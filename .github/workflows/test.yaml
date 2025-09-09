@@ -1,12 +1,11 @@
 name: Run All Tests
-on:
-  pull_request:
-  workflow_dispatch:
+on: [pull_request, workflow_dispatch]
 
 permissions: {}
 
 jobs:
-  build:
+  test:
+    name: "Build library and run unit tests"
     runs-on: ubuntu-24.04
     steps:
       - name: "Check out PR branch"
@@ -31,8 +30,10 @@ jobs:
           distribution: temurin
           java-version: 17
 
-      - name: "Run JVM tests"
+      - name: "Build library"
+        run: bash ./scripts/build-linux-x86_64.sh
+
+      - name: "Run tests and build examples"
         run: |
-          bash ./scripts/build-linux-x86_64.sh
           ./gradlew test
           ./gradlew :examples:build

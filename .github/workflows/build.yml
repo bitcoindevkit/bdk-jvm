@@ -59,7 +59,7 @@ jobs:
           path: D:\a\bdk-jvm\bdk-jvm\lib\src\main\resources\
 
   build-full-library:
-    name: Create full bdk-jvm library
+    name: "Create full bdk-jvm library"
     needs: [build-macOS-native-libs, build-windows-native-lib]
     runs-on: ubuntu-24.04
     steps:

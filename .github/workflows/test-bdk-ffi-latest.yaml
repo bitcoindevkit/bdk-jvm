@@ -7,7 +7,8 @@ on:
 permissions: {}
 
 jobs:
-  build:
+  test:
+    name: "Run unit tests against the latest commit on bdk-ffi"
     runs-on: ubuntu-24.04
     steps:
       - name: "Check out PR branch"
@@ -40,8 +41,10 @@ jobs:
           distribution: temurin
           java-version: 17
 
-      - name: "Run JVM tests"
+      - name: "Build library"
+        run: bash ./scripts/build-linux-x86_64.sh --skip-submodule-update
+
+      - name: "Run tests and build examples"
         run: |
-          bash ./scripts/build-linux-x86_64.sh --skip-submodule-update
           ./gradlew test
           ./gradlew :examples:build
