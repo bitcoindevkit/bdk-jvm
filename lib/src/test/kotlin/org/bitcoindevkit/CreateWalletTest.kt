@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
 import kotlin.test.assertFails
 
-class CreatingWalletTest {
+class CreateWalletTest {
     private val conn: Persister = Persister.newInMemory()
 
     @Nested
