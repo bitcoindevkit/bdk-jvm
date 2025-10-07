@@ -39,7 +39,7 @@ fun main() {
         val lightClient = CbfBuilder()
             .peers(peers)
             .connections(1u)
-            .scanType(ScanType.New)
+            .scanType(ScanType.Sync)
             .dataDir(persistenceFilePath.toString())
             .build(wallet)
         val client = lightClient.client
