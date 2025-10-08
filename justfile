@@ -37,7 +37,7 @@ submodule-to-master:
   && git pull origin master
 
 [group("Build")]
-[doc("Build the library for given ARCH.")]
+[doc("Build the library for given ARCH. Will use the committed version of the submodule.")]
 build ARCH="macos-aarch64":
   bash ./scripts/build-{{ARCH}}.sh
 
@@ -56,6 +56,8 @@ clean:
   rm -rf ./bdk-ffi/bdk-ffi/target/
   rm -rf ./build/
   rm -rf ./lib/build/
+  rm -rf ./examples/build/
+  rm -rf ./examples/data/
 
 [group("Test")]
 [doc("Run all tests, unless a specific test is provided.")]
