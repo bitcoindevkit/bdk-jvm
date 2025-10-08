@@ -8,8 +8,7 @@ import java.nio.file.Files
 import java.nio.file.Paths
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
-
-
+import java.nio.file.Path
 
 fun main() {
     // Regtest environment must have Compact block filter enabled to run this
@@ -19,9 +18,10 @@ fun main() {
     val ip: IpAddress = IpAddress.fromIpv4(127u, 0u, 0u, 1u)
     val peer: Peer = Peer(ip, 18444u, false)
     val peers: List<Peer> = listOf(peer)
-    val currentPath = Paths.get("examples/data").toAbsolutePath().normalize()
-    println("Current path: $currentPath")
-    val persistenceFilePath = Files.createTempDirectory(currentPath, "kyoto-data_")
+
+    val persistenceDir: Path = Paths.get("examples/data").toAbsolutePath().normalize()
+    Files.createDirectories(persistenceDir)
+    val persistenceFilePath: Path = Files.createTempDirectory(persistenceDir, "kyoto-data_")
 
     val wallet = getNewWallet(ActiveWalletScriptType.P2WPKH, Network.REGTEST)
     val address = wallet.revealNextAddress(KeychainKind.EXTERNAL)
