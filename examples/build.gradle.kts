@@ -5,9 +5,6 @@ plugins {
     id("application")
 }
 
-group = "org.bitcoindevkit"
-version = "2.0.0-SNAPSHOT"
-
 repositories {
     mavenCentral()
 }
