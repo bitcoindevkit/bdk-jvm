@@ -1,0 +1,57 @@
+name: Deploy API Documentation
+
+# This workflow allows us to build the API docs using a release tag and automatically deploy it to GitHub pages.
+# The docs are live at https://bitcoindevkit.github.io/bdk-jvm/.
+
+on: [workflow_dispatch]
+
+# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: "Checkout repository"
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+          persist-credentials: false
+          fetch-depth: 0
+
+      - name: "Set up JDK"
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
+
+      - name: "Setup Gradle"
+        uses: gradle/actions/setup-gradle@v4
+
+      - name: "Build library"
+        run: bash ./scripts/build-linux-x86_64.sh
+
+      - name: "Build API documentation"
+        run: ./gradlew dokkaGeneratePublicationHtml
+
+      - name: "Setup Pages"
+        uses: actions/configure-pages@v5
+
+      - name: "Upload artifact"
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: './lib/build/dokka/html'
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-24.04
+    needs: build
+    steps:
+      - name: "Deploy to GitHub Pages"
+        id: deployment
+        uses: actions/deploy-pages@v4
