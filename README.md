@@ -1,10 +1,10 @@
 # bdk-jvm
 
-This project builds a .jar package for the JVM platform that provides Kotlin language bindings for the [BDK] libraries. The Kotlin language bindings are created by the `bdk-ffi` project which is included in the root of this repository.
+This project builds a .jar package for the JVM platform that provides Kotlin language bindings for the [BDK] libraries. The Kotlin language bindings are created by the [`bdk-ffi`] project which is included in the root of this repository.
 
 ## How to Use
 
-To use the Kotlin language bindings for BDK in your JVM project add the following to your gradle dependencies:
+To use the Kotlin language bindings for BDK in your JVM project, add the following to your Gradle dependencies:
 
 ```kotlin
 repositories {
@@ -13,20 +13,6 @@ repositories {
 
 dependencies {
     implementation("org.bitcoindevkit:bdk-jvm:<version>")
-}
-```
-
-### Snapshot releases
-
-To use a snapshot release, specify the snapshot repository url in the `repositories` block and use the snapshot version in the `dependencies` block:
-
-```kotlin
-repositories {
-    maven("https://s01.oss.sonatype.org/content/repositories/snapshots/")
-}
-
-dependencies { 
-    implementation("org.bitcoindevkit:bdk-jvm:<version-SNAPSHOT>")
 }
 ```
 
@@ -61,20 +47,7 @@ You can also list the application tasks. (All examples grouped under application
 ./gradlew tasks --group application
 ```
 
-## How to publish to your local Maven repo
-
-```shell
-./gradlew publishToMavenLocal -P localBuild
-```
-
-Note that the commands assume you don't need the local libraries to be signed. If you do wish to sign them, simply set your `~/.gradle/gradle.properties` signing key values like so:
-
-```properties
-signing.gnupg.keyName=<YOUR_GNUPG_ID>
-signing.gnupg.passphrase=<YOUR_GNUPG_PASSPHRASE>
-```
-
-and use the `publishToMavenLocal` task without the `localBuild` flag:
+## Publish to your local Maven repo
 
 ```shell
 ./gradlew publishToMavenLocal
