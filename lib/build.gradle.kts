@@ -1,18 +1,18 @@
-import org.gradle.api.tasks.testing.logging.TestExceptionFormat.*
-import org.gradle.api.tasks.testing.logging.TestLogEvent.*
+import org.gradle.api.tasks.testing.logging.TestExceptionFormat
+import org.gradle.api.tasks.testing.logging.TestLogEvent
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-
-// library version is defined in gradle.properties
-val libraryVersion: String by project
 
 plugins {
     id("org.jetbrains.kotlin.jvm")
-    id("org.gradle.java-library")
     id("org.gradle.maven-publish")
     id("org.gradle.signing")
     id("org.jetbrains.dokka")
     id("org.jetbrains.dokka-javadoc")
 }
+
+group = "org.bitcoindevkit"
+version = "2.3.0-SNAPSHOT"
 
 java {
     sourceCompatibility = JavaVersion.VERSION_11
@@ -21,24 +21,18 @@ java {
     withJavadocJar()
 }
 
-tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
-    kotlinOptions {
-        jvmTarget = "11"
+tasks.withType<KotlinCompile> {
+    compilerOptions {
+        jvmTarget.set(JvmTarget.JVM_11)
     }
 }
 
-testing {
-    suites {
-        val test by getting(JvmTestSuite::class) {
-            useKotlinTest("1.9.23")
-        }
-    }
-}
+tasks.test {
+    useJUnitPlatform()
 
-tasks.withType<Test> {
     testLogging {
-        events(PASSED, SKIPPED, FAILED, STANDARD_OUT, STANDARD_ERROR)
-        exceptionFormat = FULL
+        events(TestLogEvent.PASSED, TestLogEvent.SKIPPED, TestLogEvent.FAILED, TestLogEvent.STANDARD_OUT)
+        exceptionFormat = TestExceptionFormat.FULL
         showExceptions = true
         showStackTraces = true
         showCauses = true
@@ -46,8 +40,14 @@ tasks.withType<Test> {
 }
 
 dependencies {
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.8.1")
+    // JNA
     implementation("net.java.dev.jna:jna:5.14.0")
+
+    // Coroutines
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.8.1")
+
+    // Tests
+    testImplementation(kotlin("test"))
 }
 
 afterEvaluate {
@@ -56,7 +56,7 @@ afterEvaluate {
             create<MavenPublication>("maven") {
                 groupId = "org.bitcoindevkit"
                 artifactId = "bdk-jvm"
-                version = libraryVersion
+                version = version.toString()
 
                 from(components["java"])
                 pom {
@@ -100,7 +100,7 @@ signing {
 
 dokka {
     moduleName.set("bdk-jvm")
-    moduleVersion.set(libraryVersion)
+    moduleVersion.set(version.toString())
     dokkaSourceSets.main {
         includes.from("README.md")
         sourceLink {

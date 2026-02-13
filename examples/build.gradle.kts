@@ -1,8 +1,8 @@
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    id("org.jetbrains.kotlin.jvm") version "2.1.10"
-    id("application")
+    id("org.jetbrains.kotlin.jvm")
 }
 
 repositories {
@@ -11,14 +11,9 @@ repositories {
 
 dependencies {
     implementation(project(":lib"))
-    testImplementation(kotlin("test"))
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.8.1")
     implementation("org.slf4j:slf4j-api:2.0.16")
     implementation("ch.qos.logback:logback-classic:1.5.13")
-}
-
-tasks.test {
-    useJUnitPlatform()
 }
 
 java {
@@ -28,7 +23,7 @@ java {
     withJavadocJar()
 }
 
-tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
+tasks.withType<KotlinCompile> {
     compilerOptions {
         jvmTarget.set(JvmTarget.JVM_11)
     }
