@@ -33,7 +33,8 @@ git tag v2.3.0 --sign --edit
 git push upstream v2.3.0
 ```
 
-- [ ] Trigger release through the workflow dispatch with the new tag.
-- [ ] Bump the version on master while keeping the `SNAPSHOT` suffix, e.g. from `1.1.0-SNAPSHOT` to `1.2.0-SNAPSHOT`.
+- [ ] Build release artifacts through the workflow dispatch with the new tag (`build.yml`)
+- [ ] Publish the release to Maven Central.
+- [ ] Bump the version on `master` while keeping the `SNAPSHOT` suffix, e.g., from `1.1.0-SNAPSHOT` to `1.2.0-SNAPSHOT`.
 - [ ] Update this release workflow if necessary.
-- [ ] Build API docs and push them to the `gh-pages` branch, which will publish them automatically to.
+- [ ] Trigger the release of the new API docs (use workflow dispatch on the `deploy-docs.yml` action with the newly released tag). This will publish them automatically to https://bitcoindevkit.github.io/bdk-jvm/.
