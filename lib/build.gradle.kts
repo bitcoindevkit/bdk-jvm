@@ -45,6 +45,7 @@ dependencies {
 
     // Tests
     testImplementation(kotlin("test"))
+    testImplementation("org.kotlinbitcointools:regtest-toolbox:0.1.0")
 }
 
 mavenPublishing {
