@@ -58,6 +58,8 @@ clean:
   rm -rf ./lib/build/
   rm -rf ./examples/build/
   rm -rf ./examples/data/
+  rm -rf ./lib/src/main/kotlin/org/bitcoindevkit/*
+  rm -rf ./lib/src/main/resources/*
 
 [group("Test")]
 [doc("Run all tests, unless a specific test is provided.")]
