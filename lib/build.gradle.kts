@@ -1,3 +1,6 @@
+import com.vanniktech.maven.publish.JavadocJar
+import com.vanniktech.maven.publish.KotlinJvm
+import com.vanniktech.maven.publish.SourcesJar
 import org.gradle.api.tasks.testing.logging.TestExceptionFormat
 import org.gradle.api.tasks.testing.logging.TestLogEvent
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
@@ -7,7 +10,6 @@ plugins {
     id("org.jetbrains.kotlin.jvm")
     id("com.vanniktech.maven.publish")
     id("org.jetbrains.dokka")
-    id("org.jetbrains.dokka-javadoc")
 }
 
 group = "org.bitcoindevkit"
@@ -83,9 +85,14 @@ mavenPublishing {
             developerConnection.set("scm:git:ssh://github.com/bitcoindevkit/bdk-ffi.git")
         }
     }
-}
 
-mavenPublishing {
+    configure(
+        KotlinJvm(
+            javadocJar = JavadocJar.Dokka("dokkaGeneratePublicationHtml"),
+            sourcesJar = SourcesJar.Sources(),
+        )
+    )
+
     publishToMavenCentral()
     signAllPublications()
 }
@@ -94,7 +101,7 @@ dokka {
     moduleName.set("bdk-jvm")
     moduleVersion.set(version.toString())
     dokkaSourceSets.main {
-        includes.from("README.md")
+        includes.from("../docs/DOKKA_LANDING.md")
         sourceLink {
             localDirectory.set(file("src/main/kotlin"))
             remoteUrl("https://bitcoindevkit.org/")
