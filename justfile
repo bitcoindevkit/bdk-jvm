@@ -16,7 +16,7 @@ docs:
 [group("Repo")]
 [doc("Publish the library to your local Maven repository.")]
 publish-local:
-  ./gradlew publishToMavenLocal -P localBuild
+  ./gradlew publishToMavenLocal
 
 [group("Submodule")]
 [doc("Initialize bdk-ffi submodule to committed hash.")]
