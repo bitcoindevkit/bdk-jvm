@@ -15,6 +15,11 @@ dependencies {
     implementation("org.bitcoindevkit:bdk-jvm:<version>")
 }
 ```
+## API Documentation
+
+You can view the latest API documentation here:
+[bdk-jvm ](https://javadoc.io/doc/org.bitcoindevkit/bdk-jvm/latest/index.html)
+
 
 ## Example Projects
 
