@@ -38,3 +38,8 @@ val TEST_MULTIPATH_DESCRIPTOR    = Descriptor("tr($TEST_EXTENDED_PUBKEY/<0;1>/*)
 
 val MAIN_BIP86_DESCRIPTOR        = Descriptor("tr($MAIN_EXTENDED_PRIVKEY/$BIP86_TEST_RECEIVE_PATH/*)", Network.BITCOIN)
 val MAIN_BIP86_CHANGE_DESCRIPTOR = Descriptor("tr($MAIN_EXTENDED_PRIVKEY/$BIP86_TEST_CHANGE_PATH/*)", Network.BITCOIN)
+
+
+//Regtest URLs for testing. Defaults for regtest-toolbox
+const val ELECTRUM_REGTEST_URL = "tcp://127.0.0.1:60401"
+const val ESPLORA_REGTEST_URL = "http://127.0.0.1:3002"
