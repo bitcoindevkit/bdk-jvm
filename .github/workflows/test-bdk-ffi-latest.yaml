@@ -56,7 +56,7 @@ jobs:
         uses: actions/setup-java@v4
         with:
           distribution: temurin
-          java-version: 17
+          java-version: 21
 
       - name: "Build library"
         run: bash ./scripts/build-linux-x86_64.sh --skip-submodule-update
