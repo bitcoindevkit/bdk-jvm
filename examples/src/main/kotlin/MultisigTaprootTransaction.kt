@@ -36,11 +36,11 @@ fun main() {
     // that the wallet can only be spent via the script path (no key-path spending).
     val externalDescriptor = Descriptor(
         descriptor = "tr($UNSPENDABLE_KEY,multi_a(2,$alicePublicDescriptor,$bobPublicDescriptor,$mattPublicDescriptor))",
-        network = Network.REGTEST
+        networkKind = NetworkKind.TEST
     )
     val changeDescriptor = Descriptor(
         descriptor = "tr($UNSPENDABLE_KEY,multi_a(2,$aliceChangeDescriptor,$bobChangeDescriptor,$mattChangeDescriptor))",
-        network = Network.REGTEST
+        networkKind = NetworkKind.TEST
     )
 
     // Create multisig wallet (reuse shared persistence helper)

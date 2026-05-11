@@ -31,11 +31,11 @@ fun main() {
     // Define the descriptors for a multisig wallet with Alice, Bob and Matt's public descriptors.
     val externalDescriptor = Descriptor(
         "wsh(multi(2,$alicePublicDescriptor,$bobPublicDescriptor,$mattPublicDescriptor))",
-        Network.REGTEST
+        NetworkKind.TEST
     )
     val changeDescriptor = Descriptor(
         "wsh(multi(2,$aliceChangeDescriptor,$bobChangeDescriptor,$mattChangeDescriptor))",
-        Network.REGTEST
+        NetworkKind.TEST
     )
 
     //Create multisig wallet
@@ -144,7 +144,7 @@ fun esploraFullScanWallet(
 fun getNewWallet(script: ActiveWalletScriptType, network: Network): Wallet {
     val (descriptor, changeDescriptor) =  createDescriptorsFromBip32RootKey(
         script,
-        network
+        NetworkKind.TEST
     )
     val connection: Persister = Persister.newSqlite(generateUniquePersistenceFilePath())
     val wallet = Wallet(descriptor, changeDescriptor, network, connection)

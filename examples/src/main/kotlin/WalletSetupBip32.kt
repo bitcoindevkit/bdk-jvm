@@ -5,7 +5,7 @@ import java.nio.file.Paths
 fun main(){
     val (descriptor, changeDescriptor) = createDescriptorsFromBip32RootKey(
         ActiveWalletScriptType.P2WPKH,
-        Network.REGTEST
+        NetworkKind.TEST
     )
     println("Descriptor: $descriptor")
     println("Change descriptor: $changeDescriptor")
@@ -24,7 +24,7 @@ fun main(){
 
 fun createDescriptorsFromBip32RootKey (
     activeWalletScriptType: ActiveWalletScriptType,
-    network: Network) : Array<Descriptor>{
+    network: NetworkKind) : Array<Descriptor>{
     val mnemonic = Mnemonic(WordCount.WORDS12)
     val bip32ExtendedRootKey = DescriptorSecretKey(network, mnemonic, null)
     println("Bip32 root key: $bip32ExtendedRootKey")
@@ -48,7 +48,7 @@ fun createDescriptorsFromBip32RootKey (
 fun createScriptAppropriateDescriptor(
     scriptType: ActiveWalletScriptType,
     bip32ExtendedRootKey: DescriptorSecretKey,
-    network: Network,
+    network: NetworkKind,
     keychain: KeychainKind,
 ): Descriptor {
     return when (scriptType) {
