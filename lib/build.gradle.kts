@@ -94,7 +94,9 @@ mavenPublishing {
     )
 
     publishToMavenCentral()
-    signAllPublications()
+    if (!providers.gradleProperty("skipSigning").isPresent) {
+        signAllPublications()
+    }
 }
 
 dokka {
