@@ -4,7 +4,7 @@ about: "Create a new release [for release managers only]"
 title: "Release MAJOR.MINOR.PATCH"
 ---
 
-- [ ] Bump the bdk-ffi submodule to the release tag in bdk-ffi and merge that to `master`.
+- [ ] Bump the bdk-ffi submodule to the release tag in bdk-ffi.
 - [ ] Delete the `target` directory in bdk-ffi and the `build` directory in `lib` to make sure you're building the library from scratch without any caches.
 - [ ] Build the library.
 - [ ] Run the tests and adjust them if necessary.
@@ -34,6 +34,7 @@ git push upstream v2.3.0
 ```
 
 - [ ] Build release artifacts through the workflow dispatch with the new tag (`build.yml`)
+- [ ] Add the platform-specific binaries to the `resources/` directory
 - [ ] Publish the release to Maven Central.
 - [ ] Bump the version on `master` while keeping the `SNAPSHOT` suffix, e.g., from `1.1.0-SNAPSHOT` to `1.2.0-SNAPSHOT`.
 - [ ] Update this release workflow if necessary.

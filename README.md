@@ -55,7 +55,7 @@ You can also list the application tasks. (All examples grouped under application
 ## Publish to your local Maven repo
 
 ```shell
-./gradlew publishToMavenLocal
+./gradlew publishToMavenLocal -P skipSigning
 ```
 
 ## Known issues

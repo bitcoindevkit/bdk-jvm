@@ -2,6 +2,8 @@ build/
 .gradle/
 bdk.kt
 libbdkffi.dylib
+libbdkffi.so
+bdkffi.dll
 /.idea
 .DS_Store
 /examples/data/
