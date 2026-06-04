@@ -7,3 +7,4 @@ bdkffi.dll
 /.idea
 .DS_Store
 /examples/data/
+/.github/workflows/.idea

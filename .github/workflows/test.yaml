@@ -26,14 +26,14 @@ jobs:
 
     steps:
       - name: "Check out PR branch"
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           submodules: recursive
           persist-credentials: false
           fetch-depth: 0
 
       - name: "Cache"
-        uses: actions/cache@v3
+        uses: actions/cache@v5
         with:
           path: |
             ~/.cargo/registry
@@ -42,7 +42,7 @@ jobs:
           key: ${{ runner.os }}-${{ hashFiles('**/Cargo.toml','**/Cargo.lock') }}
 
       - name: "Set up JDK"
-        uses: actions/setup-java@v4
+        uses: actions/setup-java@v5
         with:
           distribution: temurin
           java-version: 21
