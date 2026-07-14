@@ -61,7 +61,7 @@ jobs:
   build-full-library:
     name: "Create full bdk-jvm library"
     needs: [build-macOS-native-libs, build-windows-native-lib]
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-22.04
     steps:
       - name: "Checkout publishing branch"
         uses: actions/checkout@v6
@@ -78,6 +78,9 @@ jobs:
 
       - name: "Build bdk-jvm library"
         run: bash ./scripts/build-linux-x86_64.sh
+
+      - name: "Verify Linux glibc compatibility"
+        run: bash ./scripts/check-glibc-version.sh
 
       - name: "Download macOS native binaries from previous job"
         uses: actions/download-artifact@v8

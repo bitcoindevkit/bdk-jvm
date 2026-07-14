@@ -15,6 +15,17 @@ dependencies {
     implementation("org.bitcoindevkit:bdk-jvm:<version>")
 }
 ```
+## Linux compatibility
+
+The prebuilt Linux x86-64 native library requires glibc 2.35 or newer.
+
+Linux release artifacts are built on Ubuntu 22.04, and CI verifies that
+`libbdkffi.so` does not reference symbols newer than `GLIBC_2.35`. This
+baseline supports distributions such as Ubuntu 22.04 and Debian 12.
+
+Other architectures and libc implementations, including musl-based Linux
+distributions, are not currently provided as prebuilt Linux artifacts.
+
 ## API Documentation
 
 You can view the latest API documentation here:
