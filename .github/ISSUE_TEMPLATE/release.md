@@ -35,9 +35,8 @@ git tag v2.3.0 --sign --edit
 git push upstream v2.3.0
 ```
 
-- [ ] Build release artifacts through the workflow dispatch with the new tag (`build.yml`)
-- [ ] Add the platform-specific binaries to the `resources/` directory
-- [ ] Publish the release to Maven Central.
+- [ ] Build and upload the release through the workflow dispatch with the new tag (`publish.yml`). Select the release tag in the _Run workflow > Use workflow from_ dropdown. The workflow checks that the library version matches the tag, builds the native libraries for all targets, runs the tests, and uploads the signed deployment to the Central Portal.
+- [ ] Publish the release on Maven Central by logging in to https://central.sonatype.com, reviewing the staged deployment, and clicking _Publish_. Note that a published version can never be replaced or removed.
 - [ ] Go to https://javadoc.io/versions/org.bitcoindevkit/bdk-jvm and download the latest version of the API docs, which will publish them at https://javadoc.io/doc/org.bitcoindevkit/bdk-jvm/latest/index.html.
 - [ ] Bump the version on `master` while keeping the `SNAPSHOT` suffix, e.g., from `1.1.0-SNAPSHOT` to `1.2.0-SNAPSHOT`.
 - [ ] Update this release workflow if necessary.
