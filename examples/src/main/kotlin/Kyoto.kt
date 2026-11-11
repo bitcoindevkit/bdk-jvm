@@ -19,10 +19,6 @@ fun main() {
     val peer: Peer = Peer(ip, 18444u, false)
     val peers: List<Peer> = listOf(peer)
 
-    val persistenceDir: Path = Paths.get("examples/data").toAbsolutePath().normalize()
-    Files.createDirectories(persistenceDir)
-    val persistenceFilePath: Path = Files.createTempDirectory(persistenceDir, "kyoto-data_")
-
     val wallet = getNewWallet(ActiveWalletScriptType.P2WPKH, Network.REGTEST)
     val address = wallet.revealNextAddress(KeychainKind.EXTERNAL)
 
@@ -40,7 +36,6 @@ fun main() {
             .peers(peers)
             .connections(1u)
             .scanType(ScanType.Sync)
-            .dataDir(persistenceFilePath.toString())
             .build(wallet)
         val client = lightClient.client
         val node = lightClient.node
