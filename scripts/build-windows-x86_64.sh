@@ -23,7 +23,7 @@ rustup target add $COMPILATION_TARGET
 cargo build --locked --profile release-smaller --target $COMPILATION_TARGET
 
 # Generate Kotlin bindings using uniffi-bindgen
-cargo run --bin uniffi-bindgen generate --library ./$TARGET_DIR/$LIB_NAME --language kotlin --out-dir ../../lib/src/main/kotlin/ --no-format
+cargo run --features uniffi-bindgen --bin uniffi-bindgen generate --library ./$TARGET_DIR/$LIB_NAME --language kotlin --out-dir ../../lib/src/main/kotlin/ --no-format
 
 # Copy the binary to the resources directory
 mkdir -p ../../lib/src/main/$RESOURCE_DIR/
