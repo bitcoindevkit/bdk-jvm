@@ -26,6 +26,10 @@ You can view the latest API documentation here:
 - [Tatooine Faucet](https://github.com/thunderbiscuit/tatooine)
 - [Godzilla Wallet](https://github.com/thunderbiscuit/godzilla-wallet)
 
+## Requirements
+
+Linux builds of bdk-jvm 3.0.0 and later require **glibc 2.38 or newer**. Distributions shipping an older glibc, such as Debian Bookworm (2.36), cannot load the published native library. Use a newer distribution or an earlier bdk-jvm release on those systems.
+
 ## How to build
 
 _Note that Kotlin version `1.9.23` or later is required to build the library._
